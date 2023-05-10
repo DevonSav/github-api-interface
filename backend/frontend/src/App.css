@@ -1,38 +1,122 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/*justify-content: center;*/
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.external-link {
+	color: #61dafb;
+	text-decoration: none;
+}
+
+.search-data-input {
+	padding: 8px 8px;
+	font-size: calc(1px + 1.8vmin);
+}
+
+.action-btn {
+	padding: 15px 32px;
+	margin: 4px 10px;
+	color: rgb(240, 235, 226);
+	background-color: rgb(31, 33, 33);
+	border-color: #585d5d;
+	border-style: solid;
+	text-align: center;
+	text-decoration: none;
+	font-size: calc(1px + 1.8vmin);
+	font-weight: bold;
+	cursor: pointer;
+	-webkit-user-select: none;	/* Safari */
+	-ms-user-select: none;	/* IE 10 and IE 11 */
+	user-select: none;	/* Standard syntax */
+	border-radius: 5px;
+}
+#user-search-btn {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+#refresh-btn {
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+.user-profile {
+	height: auto;
+	margin-bottom: 32px;
+	border-radius: 5px;
+	border: solid whitesmoke;
+}
+.user-profile .profile-image {
+	float: left;
+	width: 140px;
+	height: 140px;
+	margin: 20px;
+	border: solid #61dafb;
+	border-radius: 50%;
+	background: #555;
+	cursor: pointer;
+}
+.user-profile .profile-username {
+	position: relative;
+	margin: 0;
+	top: 30px;
+	left: 0px;
+	text-align: left;
+	font-weight: bold;
+}
+.user-profile .profile-bio {
+	text-align: left;
+}
+
+.repo-table .tableHeader {
+	padding: 5px 10px;
+	padding-left: 0;
+	padding-right: 32px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: left;
+}
+.repo-table .repoTableData {
+	padding: 5px 10px;
+	padding-left: 0;
+	padding-right: 32px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: left;
+}
+.repo-table #github-link {
+	padding-right: 20px;
+}
+
+.user-table .tableHeader {
+	padding: 5px 10px;
+	padding-left: 0;
+	padding-right: 32px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-align: left;
+}
+.user-profile-image {
+	height: 80px;
+	width: 80px;
+	background: #555;
+	border: solid #61dafb;
+	border-radius: 50%;
+	cursor: pointer;
 }
