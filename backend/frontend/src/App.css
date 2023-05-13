@@ -106,15 +106,16 @@
 
 .user-table .tableHeader {
 	padding: 5px 10px;
-	padding-left: 0;
+	padding-left: 1px;
 	padding-right: 32px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	text-align: left;
 }
-.user-profile-image {
+.user-table .user-profile-image {
 	height: 80px;
 	width: 80px;
+	margin-right: 20px;
 	background: #555;
 	border: solid #61dafb;
 	border-radius: 50%;
