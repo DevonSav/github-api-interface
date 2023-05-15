@@ -1,12 +1,12 @@
 import './App.css';
-import GithubInterfacePage from './components/GithubInterfacePage';
+import UserSearchPage from './components/UserSearchPage';
 //import UserDetailsPage from './components/UserDetailsPage';
 
 function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <GithubInterfacePage />
+                <UserSearchPage />
                 {/*<UserDetailsPage />*/}
             </header>
         </div>
