@@ -140,3 +140,4 @@ dist
 
 # misc
 .DS_Store
+backend/users return structure.txt

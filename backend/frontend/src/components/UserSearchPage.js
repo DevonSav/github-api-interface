@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 
 export default class UserSearchPage extends React.Component {
 	constructor(props) {
@@ -66,13 +67,18 @@ export default class UserSearchPage extends React.Component {
 		} else if (!isLoaded) {
 			usersDataList = (<tr><td>Waiting for search...</td></tr>);
 		} else {
+			//username: (user.name ? user.name : user.login), login: user.login
+			const newTo = {
+				pathname: `/user-details/${usersList[0].login}`
+			};
+
 			//If the name is null use the login value
 			usersDataList = (
 				<>
 					{usersList.map(user => (
 						<tr key={user.id} className='userDataRow'>
-							<td className='userTableData'><img className="user-profile-image" alt="profile" src={user.avatar_url}/></td>
-							<td className='userTableData'>{user.name ? user.name : user.login}</td>
+							<td className='user_table_data'><a href={`https://github.com/${user.login}`}><img className="user_profile_image" alt="profile" src={user.avatar_url}/></a></td>
+							<td className='user_table_data'><Link to={newTo} className="pagelink" id='user_page_link'>{user.name ? user.name : user.login}</Link></td>
 						</tr>
 						))
 					}
@@ -81,15 +87,15 @@ export default class UserSearchPage extends React.Component {
 		}
 
 		return (
-			<div className="github-interface">
-				<h2 id="main-heading">Github Interface</h2>
+			<div className="github_interface">
+				<h2 id="main_heading">Github Interface</h2>
 				<form>
-					<input className='search-data-input' id='nameInput' type="text" placeholder='Name' onChange={e => this.handleChange(e)}/>
-					<button id='user-search-btn' className='action-btn' onClick={(e) => this.refreshUsersList(e)}>Search</button>
+					<input className='search_data_input' id='nameInput' type="text" placeholder='Name' onChange={e => this.handleChange(e)}/>
+					<button id='user_search_btn' className='action_btn' onClick={(e) => this.refreshUsersList(e)}>Search</button>
 				</form>
 
 				<br></br>
-				<table className='user-table'>
+				<table className='user_table'>
 					<thead>
 						<tr>
 							<th className='tableHeader'></th>

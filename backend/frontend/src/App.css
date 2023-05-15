@@ -1,9 +1,6 @@
 .App {
 	text-align: center;
 }
-
-
-
 .App-header {
 	background-color: #282c34;
 	min-height: 100vh;
@@ -14,22 +11,26 @@
 	font-size: calc(10px + 2vmin);
 	color: white;
 }
-
 .App-link {
 	color: #61dafb;
 }
 
-.external-link {
+
+.external_link {
 	color: #61dafb;
 	text-decoration: none;
 }
 
-.search-data-input {
+#user_page_link {
+	text-decoration: none;
+}
+
+.search_data_input {
 	padding: 8px 8px;
 	font-size: calc(1px + 1.8vmin);
 }
 
-.action-btn {
+.action_btn {
 	padding: 15px 32px;
 	margin: 4px 10px;
 	color: rgb(240, 235, 226);
@@ -46,7 +47,7 @@
 	user-select: none;	/* Standard syntax */
 	border-radius: 5px;
 }
-#user-search-btn {
+#user_search_btn {
 	padding-top: 8px;
 	padding-bottom: 8px;
 }
@@ -56,13 +57,13 @@
 	padding-bottom: 8px;
 }
 
-.user-profile {
+.user_profile {
 	height: auto;
 	margin-bottom: 32px;
 	border-radius: 5px;
 	border: solid whitesmoke;
 }
-.user-profile .profile-image {
+.user_profile .profile_image {
 	float: left;
 	width: 140px;
 	height: 140px;
@@ -72,7 +73,7 @@
 	background: #555;
 	cursor: pointer;
 }
-.user-profile .profile-username {
+.user_profile .profile_username {
 	position: relative;
 	margin: 0;
 	top: 30px;
@@ -80,11 +81,11 @@
 	text-align: left;
 	font-weight: bold;
 }
-.user-profile .profile-bio {
+.user_profile .profile_bio {
 	text-align: left;
 }
 
-.repo-table .tableHeader {
+.repo_table .tableHeader {
 	padding: 5px 10px;
 	padding-left: 0;
 	padding-right: 32px;
@@ -92,7 +93,7 @@
 	padding-bottom: 5px;
 	text-align: left;
 }
-.repo-table .repoTableData {
+.repo_table .repoTableData {
 	padding: 5px 10px;
 	padding-left: 0;
 	padding-right: 32px;
@@ -100,11 +101,21 @@
 	padding-bottom: 5px;
 	text-align: left;
 }
-.repo-table #github-link {
+.repo_table #github_link {
 	padding-right: 20px;
 }
 
-.user-table .tableHeader {
+.user_table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	background-color: #3e4450;
+	border-radius: 5px;
+}
+
+.user_table .user_table_data a {
+	padding-left: 30px;
+}
+.user_table .tableHeader {
 	padding: 5px 10px;
 	padding-left: 1px;
 	padding-right: 32px;
@@ -112,12 +123,18 @@
 	padding-bottom: 5px;
 	text-align: left;
 }
-.user-table .user-profile-image {
+.user_table .user_profile_image {
 	height: 80px;
 	width: 80px;
 	margin-right: 20px;
 	background: #555;
-	border: solid #61dafb;
+	border: solid #61fbdf;
 	border-radius: 50%;
 	cursor: pointer;
+}
+.user_table #user_page_link {
+	padding-left: 0;
+	padding-right: 30px;
+	font-weight: bold;
+	color: #00aeff;
 }
