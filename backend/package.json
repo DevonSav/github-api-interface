@@ -10,7 +10,9 @@
 	"author": "Devon Saville",
 	"license": "ISC",
 	"dependencies": {
+		"dotenv": "16.0.3",
 		"express": "4.18.2",
+		"helmet": "7.0.0",
 		"node-fetch": "3.3.1"
 	},
 	"engines": {

@@ -1,9 +1,13 @@
 const express = require('express');
+const helmet = require("helmet");
 const app = express();
+const dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 3001;
 const GITHUB_API_TOKEN = process.env.API_TOKEN;
 
+
 app.use(express.json());
+app.use(helmet());
 const fetch = (...args) =>
 	import('node-fetch').then(({default: fetch}) => fetch(...args));
 
@@ -26,12 +30,13 @@ app.get('/user-search', (request, response) => {
 	const url = `https://api.github.com/users/${userName}`;
 	const options = {
 		method: 'GET',
-		Headers: {
-			Authorization: GITHUB_API_TOKEN
+		headers: {
+			Authorization: `token ${GITHUB_API_TOKEN}`
 		}
 	};
 
-	fetch(url, options)
+	try {
+		fetch(url, options)
 		.then(res => res.json())
 		.then((resp) => {
 				// Create a new json object with only the essentials
@@ -45,11 +50,15 @@ app.get('/user-search', (request, response) => {
 				response.send(userShortData);
 			},
 			(error) => {
-				console.log(error)
-				response.send({errMsg: error});
+				console.log(error);
+				//response.send({errMsg: error});
 				return;
 			}
 		)
+	} catch (error) {
+		console.log('user-search: Github API request denied!');
+		console.log(error);
+	}
 });
 
 /**
@@ -71,12 +80,13 @@ app.get('/repo-search', (request, response) => {
 	const url = `https://api.github.com/users/${userName}/repos?per_page=${repoCount}?page=1`;	// TODO:FIXME:
 	const options = {
 		method: 'GET',
-		Headers: {
-			Authorization: GITHUB_API_TOKEN
+		headers: {
+			Authorization: `token ${GITHUB_API_TOKEN}`
 		}
 	};
 
-	fetch(url, options)
+	try {
+		fetch(url, options)
 		.then(res => res.json())
 		.then(res => {
 				let newShortRepoArray = []
@@ -95,10 +105,15 @@ app.get('/repo-search', (request, response) => {
 				response.send(newShortRepoArray);
 			},
 			(error) => {
-				response.send({errMsg: error});
+				console.log(error);
+				//response.send({errMsg: error});
 				return;
 			}
 		)
+	} catch (error) {
+		console.log('repo-search: Github API request denied!');
+		console.log(error);
+	}
 });
 
 
@@ -125,12 +140,13 @@ app.get('/commit-search', (request, response) => {
 	const url = `https://api.github.com/repos/${owner}/${repoName}/commits?per_page=${commitCount}&page=1`;	// TODO:FIXME:
 	const options = {
 		method: 'GET',
-		Headers: {
-			Authorization: GITHUB_API_TOKEN
+		headers: {
+			Authorization: `token ${GITHUB_API_TOKEN}`
 		}
 	};
 
-	fetch(url, options)
+	try {
+		fetch(url, options)
 		.then(res => res.json())
 		.then(res => {
 				let newShortCommitArray = []
@@ -150,10 +166,15 @@ app.get('/commit-search', (request, response) => {
 				response.send(newShortCommitArray);
 			},
 			(error) => {
-				response.send({errMsg: error});
+				console.log(error);
+				//response.send({errMsg: error});
 				return;
 			}
 		)
+	} catch (error) {
+		console.log('commit-search: Github API request denied!');
+		console.log(error);
+	}
 });
 
 
@@ -164,4 +185,6 @@ app.listen(PORT, ()=>console.log('Listening engaged on port ' + PORT));
 /** REFERENCES
  * https://rapidapi.com/guides/call-apis-in-express-via-node-fetch
  * https://stackoverflow.com/questions/8713596/how-to-retrieve-the-list-of-all-github-repositories-of-a-person
+ * https://docs.github.com/en/rest/commits/commits?apiVersion=2022-11-28
+ * https://stackoverflow.com/questions/48605484/environment-variables-env-in-node-js-express
 */

@@ -22,9 +22,12 @@
 	margin-top: 10px;
 	margin-bottom: 5px;
 }
+.search_data_input {
+	margin-top: 14vw;
+}
 
 .external_link {
-	color: #61dafb;
+	color: #61fbdf;
 	text-decoration: none;
 }
 
@@ -79,7 +82,7 @@
 	width: 140px;
 	height: 140px;
 	margin: 20px;
-	border: solid #61dafb;
+	border: solid #61fbdf;
 	border-radius: 50%;
 	background: #555;
 	cursor: pointer;
@@ -143,6 +146,10 @@
 	padding-right: 20px;
 }
 
+#no_available_repos {
+	min-width: 35vw;
+}
+
 
 .commit_list .commitDataRow {
 	display: list-item;
@@ -159,11 +166,11 @@
 	text-align: left;
 }
 
-
 .user_table #user_search_waiting {
 	padding: 30px;
 }
 .user_table {
+	min-width: 19vw;
 	border-collapse: collapse;
 	border-spacing: 0;
 	background-color: #3e4450;

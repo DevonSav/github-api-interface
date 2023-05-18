@@ -1,5 +1,8 @@
 import React from 'react';
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+const loadingIcon = <FontAwesomeIcon icon={faSpinner} size='lg' style={{color: "#61dafb",}}/>;
 
 export default class UserSearchPage extends React.Component {
 	constructor(props) {
@@ -88,7 +91,7 @@ export default class UserSearchPage extends React.Component {
 		return (
 			<div className="github_interface">
 				<h2 id="main_heading">Github Interface</h2>
-				<form>
+				<form className='user_search_form'>
 					<input className='search_data_input' id='nameInput' type="text" placeholder='Name' onChange={e => this.handleChange(e)}/>
 					<button className='action_btn user_search' onClick={(e) => this.refreshUsersList(e)}>Search</button>
 				</form>

@@ -1,10 +1,13 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faGithubSquare } from '@fortawesome/free-brands-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import logo from '../logo.svg';
 import { Link, useParams } from "react-router-dom";
+const loadingIcon = <FontAwesomeIcon icon={faSpinner} size='lg' style={{color: "#61dafb",}}/>;
+
+
 
 export class UserDetailsPage extends React.Component {
 	constructor(props) {
@@ -13,9 +16,9 @@ export class UserDetailsPage extends React.Component {
 			error: null,
 			isLoaded: false,
 			reposList: [],
-			commitList: [],
-			currentRepoDesc: '',
-			userData: {"bio": 'no data'}
+			commitList: [{message: 'Please Select A Repo'}],
+			currentRepoDesc: 'Please Select A Repo',
+			userData: {"bio": 'No available user bio.'}
 		};
 		this.refreshRepoList = this.refreshRepoList.bind(this);
 		this.getUserData = this.getUserData.bind(this);
@@ -61,12 +64,18 @@ export class UserDetailsPage extends React.Component {
      * Runs automatically.
      */
     componentDidMount() {
+		this.getUserData();
         this.refreshRepoList();
-        this.getUserData();
     }
 
 	setRepoDescription(e, repoName) {
 		e.preventDefault();
+
+		// While data is being fetched
+		this.setState({
+			currentRepoDesc: loadingIcon,
+			commitList: [{message: loadingIcon}]
+		});
 
 		fetch(`/commit-search?name=${this.props.name}&repo=${repoName}`)
 			.then(res => res.json())
@@ -103,17 +112,18 @@ export class UserDetailsPage extends React.Component {
 	render() {
 		const { error, isLoaded, reposList, commitList, currentRepoDesc, userData} = this.state;
 		const avatarImage = (userData.avatar_url ? userData.avatar_url : logo);
-		const profileBio = (userData.bio ? userData.bio : 'No user bio.');
-		const githubIcon = <FontAwesomeIcon icon={faGithubSquare} size='lg' style={{color: "#61dafb",}}/>;
+		const profileBio = (userData.bio ? userData.bio : 'No available user bio.');
+		const githubIcon = <FontAwesomeIcon icon={faGithubSquare} size='lg' style={{color: "#61fbdf",}}/>;
 		const barIcon = <FontAwesomeIcon icon={faBars} size='lg' style={{color: "#61dafb",}}/>;
 
-		let usersDataList = <h3>ERROR, Something went wrong.</h3>;
+
+		let reposDataList = <h3>ERROR, Something went wrong.</h3>;
 		if (error) {
-			usersDataList = (<tr><td>Error: {error.message}</td></tr>);
+			reposDataList = (<tr><td>Error: {error.message}</td></tr>);
 		} else if (!isLoaded) {
-			usersDataList = (<tr><td>Waiting for search...</td></tr>);
+			reposDataList = (<tr><td>{loadingIcon} Loading...</td></tr>);
 		} else {
-			usersDataList = (
+			reposDataList = (
 				<>
 					{reposList.map(repo => (
 						<tr key={repo.id} className='repoDataRow'>
@@ -136,18 +146,15 @@ export class UserDetailsPage extends React.Component {
 			</>
 		);
 
-		return (
-			<div className="github_interface">
-				<Link to='/' className="action_btn home_btn">BACK TO SEARCH</Link>
-				<h1 id="main_heading">User Details</h1>
-				<div className='user_profile'>
-				<a href={`https://github.com/${this.props.name}`}><img className="profile_image" alt="profile" src={avatarImage}/></a>
-					<h3 className='profile_username'>{this.props.name}</h3>
-					<br></br>
-					<p className='profile_bio'>{profileBio}</p>
-				</div>
+		let repoDisplaySection = (
+			<div className='repo_list_group'>
+				<h2 id='no_available_repos'>No publicly available repositories.</h2>
+			</div>
+		);
+		if (reposList.length > 0) {
+			repoDisplaySection = (
+				<>
 				<button className='action_btn repo_search' onClick={(e) => this.refreshRepoList(e)}>Refresh Repo List</button>
-
 				<div className='repo_list_group'>
 					<table className='repo_table'>
 						<thead>
@@ -159,7 +166,7 @@ export class UserDetailsPage extends React.Component {
 							</tr>
 						</thead>
 						<tbody>
-							{usersDataList}
+							{reposDataList}
 						</tbody>
 					</table>
 					<div className='repo_detail_div'>
@@ -175,12 +182,28 @@ export class UserDetailsPage extends React.Component {
 						</div>
 					</div>
 				</div>
+				</>
+			);
+		}
+
+
+		return (
+			<div className="github_interface">
+				<Link to='/' className="action_btn home_btn">BACK TO SEARCH</Link>
+				<h1 id="main_heading">User Details</h1>
+				<div className='user_profile'>
+				<a href={`https://github.com/${this.props.name}`}><img className="profile_image" alt="profile" src={avatarImage}/></a>
+					<h3 className='profile_username'>{this.props.name}</h3>
+					<br></br>
+					<p className='profile_bio'>{profileBio}</p>
+				</div>
+
+				{repoDisplaySection}
+
 			</div>
 		);
 	}
 }
-
-
 
 
 /**
