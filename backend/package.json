@@ -4,8 +4,8 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node interface_backend.js"
+		"start": "node interface_backend.js",
+		"test": "mocha"
 	},
 	"author": "Devon Saville",
 	"license": "ISC",
@@ -18,5 +18,10 @@
 	"engines": {
 		"node": "v16.15.1",
 		"npm": "8.11.0"
+	},
+	"devDependencies": {
+		"chai": "4.3.7",
+		"mocha": "10.2.0",
+		"supertest": "6.3.3"
 	}
 }
