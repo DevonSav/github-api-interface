@@ -1,12 +1,15 @@
 const expect = require('chai').expect;
 const request = require('supertest');	// Used for testing posting data
-
 const APP = 'http://localhost:3001';
 
-
-const EXPECTED_LOGIN = 'DevonSav';
+/*
+You should ensure that your application has been appropriately tested. You
+should include at least one snapshot test and appropriate unit tests for
+both the front-end and back-end of the application.
+*/
 
 // user-search
+const EXPECTED_LOGIN = 'DevonSav';
 describe(`Interface backend GET requests for user-search`, ()=>{
     it(`should respond with json with an 'avatar_url' and 'login' property`, function(done) {
         request(APP)
@@ -32,7 +35,6 @@ describe(`Interface backend GET requests for user-search`, ()=>{
 });
 
 // repo-search
-// This only works for certain using this username (as I know there are available repos)
 describe(`Interface backend GET requests for repo-search`, ()=>{
     it(`should respond with an array containing json with an 'id' property`, function(done) {
         request(APP)

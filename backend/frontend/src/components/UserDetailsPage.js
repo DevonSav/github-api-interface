@@ -8,7 +8,6 @@ import { Link, useParams } from "react-router-dom";
 const loadingIcon = <FontAwesomeIcon icon={faSpinner} size='lg' style={{color: "#61dafb",}}/>;
 
 
-
 export class UserDetailsPage extends React.Component {
 	constructor(props) {
 		super(props);
@@ -106,7 +105,6 @@ export class UserDetailsPage extends React.Component {
 		}
 		console.log('Set repo description')
 	}
-
 
 
 	render() {

@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <div
+      className="github_interface"
+    >
+      <h2
+        id="main_heading"
+      >
+        Github Interface
+      </h2>
+      <form
+        className="user_search_form"
+      >
+        <input
+          className="search_data_input"
+          id="nameInput"
+          onChange={[Function]}
+          placeholder="Name"
+          type="text"
+        />
+        <button
+          className="action_btn user_search"
+          onClick={[Function]}
+        >
+          Search
+        </button>
+      </form>
+      <br />
+      <table
+        className="user_table"
+      >
+        <thead>
+          <tr>
+            <th
+              className="table_header left"
+            >
+              Github
+            </th>
+            <th
+              className="table_header"
+            >
+              Name
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td />
+            <td
+              id="user_search_waiting"
+            >
+              Waiting for search...
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </header>
+</div>
+`;
